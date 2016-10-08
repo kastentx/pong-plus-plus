@@ -1,10 +1,14 @@
 #include <iostream>
 using namespace std;
 
-
-
-int main()
+class cBall
 {
-	
+private:
+	int x, y;
+	int originalX, originalY;
+}
+
+int main() 
+{
 	return 0;
 }
