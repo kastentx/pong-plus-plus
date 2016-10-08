@@ -64,6 +64,11 @@ public:
 				break;
 		}
 	}
+	friend ostream & operator<<(ostream & o, cBall c)
+	{
+		0 << "Ball [" << c.x << "," << c.y << "][" << c.direction << "]" << endl;
+		return o;
+	}
 	inline int getX() { return x; }
 	inline int getY() { return y; }
 	inline eDir getDirection() { return eDir; }
