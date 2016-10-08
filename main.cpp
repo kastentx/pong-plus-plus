@@ -26,7 +26,7 @@ public:
 	}
 	void changeDirection(eDir d)
 	{
-		direction d;
+		direction = d;
 	}
 	void randomDirection()
 	{
@@ -66,13 +66,13 @@ public:
 	}
 	friend ostream & operator<<(ostream & o, cBall c)
 	{
-		0 << "Ball [" << c.x << "," << c.y << "][" << c.direction << "]";
-		return o;g
+		o << "Ball [" << c.x << "," << c.y << "][" << c.direction << "]";
+		return o;
 	}
 	inline int getX() { return x; }
 	inline int getY() { return y; }
-	inline eDir getDirection() { return eDir; }
-}
+	inline eDir getDirection() { return direction; }
+};
 
 int main() 
 {
