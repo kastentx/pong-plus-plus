@@ -66,8 +66,8 @@ public:
 	}
 	friend ostream & operator<<(ostream & o, cBall c)
 	{
-		0 << "Ball [" << c.x << "," << c.y << "][" << c.direction << "]" << endl;
-		return o;
+		0 << "Ball [" << c.x << "," << c.y << "][" << c.direction << "]";
+		return o;g
 	}
 	inline int getX() { return x; }
 	inline int getY() { return y; }
@@ -76,5 +76,14 @@ public:
 
 int main() 
 {
+	cBall c(0, 0);
+	cout << c << endl;
+	c.randomDirection();
+	cout << c << endl;
+	c.Move();
+	cout << c << endl;
+	c.randomDirection();
+	c.Move();
+	cout << c << endl;
 	return 0;
 }
