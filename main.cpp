@@ -156,7 +156,7 @@ public:
 		system("clear");
 		// top row
 		for (int i=0; i < (width + 2); i++) {
-			cout << "▄";
+			cout << "▁";
 		}
 		cout << endl;
 		for (int i=0; i < height; i++) {
@@ -169,27 +169,27 @@ public:
 				int player2y = player2->getY();
 				// left side
 				if (j == 0) {
-					cout << "█";
+					cout << "▏";
 				}
 				if (ballx == j && bally == i) {
-					cout << "O"; // ball
-				} else if (player1x == j && player1y == i) {
-					cout << "\xDB"; // player 1
-				} else if (player2x == j && player2y == i) {
-					cout << "\xDB"; // player 2
+					cout << "❁"; // ball
+				} else if (player1x == j && (player1y <= i && player1y >= i-3)) {
+					cout << "▓"; // player 1
+				} else if (player2x == j && (player2y <= i && player2y >= i-3)) {
+					cout << "▓"; // player 2
 				} else {
 					cout << " "; 
 				}
 				// right side
 				if (j == (width - 1)) {
-					cout << "█";
+					cout << "▕";
 				}
 			}
 			cout << endl;
 		}
 		// bottom row
 		for (int i=0; i < (width + 2); i++) {
-			cout << "▀";
+			cout << "▔";
 		}
 		cout << endl;
 	}
