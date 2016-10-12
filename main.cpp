@@ -1,7 +1,7 @@
 #include <iostream>
 #include <time.h>
 #include <curses.h>
-#include "kbhit.h"
+#include <iostream>
 using namespace std;
 
 enum eDir {STOP = 0, LEFT = 1, UPLEFT = 2, DOWNLEFT = 3, RIGHT = 4, UPRIGHT = 5, DOWNRIGHT = 6};
@@ -204,10 +204,10 @@ public:
 		int player2x = player2->getX();
 		int player2y = player2->getY();
 		int pLength = 4;
-		char current;
+		int current;
 
-		if () {
-			
+		if (true) {
+			current = getch();
 			if (current == up1) {
 				if (player1y > 0) {
 					player1->moveUp();
@@ -298,6 +298,10 @@ public:
 
 int main() 
 {
+	// initialize curses.h
+	initscr();
+	timeout(-1);
+  // create game manager object
 	cGameManager c(40, 20);
 	c.Run();
 	return 0;
