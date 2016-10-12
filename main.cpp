@@ -1,4 +1,6 @@
 #include <iostream>
+#include <time.h>
+#include <curses.h>
 using namespace std;
 
 enum eDir {STOP = 0, LEFT = 1, UPLEFT = 2, DOWNLEFT = 3, RIGHT = 4, UPRIGHT = 5, DOWNRIGHT = 6};
@@ -106,19 +108,96 @@ public:
 	}
 };
 
+class cGameManager
+{
+private:
+	int width, height;
+	int score1, score2;
+	char up1, down1, up2, down2;
+	bool quit;
+	cBall *ball;
+	cPaddle *player1;
+	cPaddle *player2;
+public:
+	cGameManager(int w, int h)
+	{
+		srand(time(NULL));
+		quit = false;
+		up1 = 'w';
+		down1 = 's';
+		up2 = 'i';
+		down2 = 'k';
+		score1 = score2 = 0;
+		width = w;
+		height = h;
+		ball = new cBall(width / 2, height / 2);
+		player1 = new cPaddle(1, height / 2 - 3);
+		player2 = new cPaddle(width - 2, height / 2 - 3);
+	}
+	~cGameManager()
+	{
+		delete ball;
+		delete player1;
+		delete player2;
+	}
+	void ScoreUp(cPaddle * player)
+	{
+		if (player == player1) {
+			score1++;
+		} else if (player == player2) {
+			score2++;
+		}
+
+		ball->Reset();
+		player1->Reset();
+		player2->Reset();
+	}
+	void Draw() {
+		system("clear");
+		// top row
+		for (int i=0; i < (width + 2); i++) {
+			cout << "▄";
+		}
+		cout << endl;
+		for (int i=0; i < height; i++) {
+			for (int j=0; j < width; j++) {
+				int ballx = ball->getX();
+				int bally = ball->getY();
+				int player1x = player1->getX();
+				int player1y = player1->getY();
+				int player2x = player2->getX();
+				int player2y = player2->getY();
+				// left side
+				if (j == 0) {
+					cout << "█";
+				}
+				if (ballx == j && bally == i) {
+					cout << "O"; // ball
+				} else if (player1x == j && player1y == i) {
+					cout << "\xDB"; // player 1
+				} else if (player2x == j && player2y == i) {
+					cout << "\xDB"; // player 2
+				} else {
+					cout << " "; 
+				}
+				// right side
+				if (j == (width - 1)) {
+					cout << "█";
+				}
+			}
+			cout << endl;
+		}
+		// bottom row
+		for (int i=0; i < (width + 2); i++) {
+			cout << "▀";
+		}
+		cout << endl;
+	}
+};
+
 int main() 
 {
-	cPaddle p1(0, 0);
-	cPaddle p2(10, 0);
-
-	cout << p1 << endl;
-	cout << p2 << endl;
-
-	p1.moveUp();
-	p2.moveDown();
-
-	cout << p1 << endl;
-	cout << p2 << endl;
-
+	cGameManager c(40, 20);
+	c.Draw();
 	return 0;
 }
